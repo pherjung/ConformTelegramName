@@ -39,9 +39,12 @@ except ImportError:
     _ = lambda x: x
 
 
-class ConformTelegramName(callbacks.Plugin):
+class ConformTelegramName(callbacks.PluginRegexp):
     """Rename automatically all users from Telegram"""
-    pass
+    def doPrivmsg(self, irc, msg):
+        super().doPrivmsg(irc, msg)
+        if msg.nick == 'pherjung':
+            irc.reply(msg.args[1])
 
 
 Class = ConformTelegramName
